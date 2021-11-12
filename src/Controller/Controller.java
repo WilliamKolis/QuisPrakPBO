@@ -38,12 +38,12 @@ public class Controller {
     }
     public static boolean registrasi(String nama, String email, String password){
         conn.connect();
-        String query = "INSERT INTO user VALUES (?,?)";
+        String query = "INSERT INTO user VALUES (?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setString(1, nama);
             stmt.setString(2, email);
-            stmt.setString(2, password);
+            stmt.setString(3, password);
             stmt.executeUpdate();
             return(true);
         } catch (SQLException e) {
@@ -55,7 +55,7 @@ public class Controller {
     public static int cekDuplikatKode(String email){
         conn.connect();
         int total = 0;
-        String query = "SELECT username FROM user WHERE username = '" + email + "'";
+        String query = "SELECT Email FROM user WHERE Email = '" + email + "'";
         ArrayList<User> listusername = new ArrayList<>();
         try {
             Statement stmt = conn.con.createStatement();
